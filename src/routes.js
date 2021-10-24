@@ -12,10 +12,10 @@ export default function Routes(props) {
                 <Route path= '/dashboard'>
                     <Dashboard props={props}/>
                 </Route>
-                <Route path= '/Details'>
+                <Route path= '/details'>
                     <Details props={props}/>
                 </Route>
-                <Route path= '/Config'>
+                <Route path= '/config'>
                     <Config props={props}/>
                 </Route>
                 <Route path= '/'>

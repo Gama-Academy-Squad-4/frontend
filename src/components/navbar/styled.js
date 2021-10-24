@@ -10,16 +10,16 @@ export const Nav = styled.nav`
     top: 0;
     z-index: 999;
 
-    background-color: #030303;
+    background-color: #7d38db;
     opacity: 0.95;
 
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    border-bottom: solid 1px #68de5a;;
 
     color: #fff;
-
 `
 
 export const Section1 = styled.section`
@@ -29,7 +29,7 @@ export const Section1 = styled.section`
     padding-left: 2%;
 
     @media(max-width: 800px) {
-        padding-left: 10%;
+        padding-left: 0;
         
     }
    
@@ -39,7 +39,7 @@ export const Section2 = styled.section`
     
     width: 100%;
     height: 100%;
-    display: ${(props) => props.logged? 'block' : 'none'};
+    display: 'block';    
 
     @media(max-width: 800px) {
         display: none;
@@ -73,12 +73,12 @@ export const StyledLink = styled(Link)`
     text-decoration: none;
     font-size: 1.2rem;
     font-weight: 700;    
-    color: #faa292;
+    color: #68de5a;
     font-family: 'roboto';    
 
     &:hover{
         transition: 0.6s;
-        color: ${(props) => props.active === true?  '#0a0a0a' : '#fafafa'};
+        color: #131313;
     }
 `
 
@@ -88,13 +88,15 @@ export const Section3 = styled.section`
     text-align: center;
     cursor: pointer;
     display: none;
+    
 
     @media(max-width: 800px) {
-        display: ${(props) => props.logged? 'block' : 'none'};
+        display: block;
         
     }
 `
 
 export const Icon = styled(TiThMenu)`
     font-size: 2rem;
+    color: #fafafa;
 `

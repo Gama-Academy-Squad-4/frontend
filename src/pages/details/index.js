@@ -1,10 +1,15 @@
 import * as S from './styled';
+import { Navbar } from '../../components'
 
 
 const Details = (props) => {
 
     return(
-        <p>Details</p>
+        <S.Container>
+            <Navbar                 
+                active = 'detalhes'
+            />
+        </S.Container>
     )
 
 }

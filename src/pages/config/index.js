@@ -1,10 +1,14 @@
 import * as S from './styled';
-
+import { Navbar } from '../../components'
 
 const Config = (props) => {
 
     return(
-        <p>Config</p>
+        <S.Container>
+            <Navbar                 
+                active = 'cadastro'
+            />
+        </S.Container>
     )
 
 }
