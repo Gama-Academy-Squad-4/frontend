@@ -9,7 +9,7 @@ const LoginButton = (props) => {
                 onClick={() => props.handleClick()}
                 disabled={props.disabled}
             >
-                Entrar
+                {props.label? props.label: 'Entrar'}
             </S.Button>
         </S.Container>
         

@@ -9,7 +9,7 @@ export const Input = styled.input `
    font-size: 0.9rem;
    font-weight: 600;
    padding-left: 2%;
-   margin-bottom: 5%;
+   margin-bottom: ${(props => props.marginBottom? props.marginBottom : '5%')} ;
    font-family: Helvetica, Sans-Serif;
 
    

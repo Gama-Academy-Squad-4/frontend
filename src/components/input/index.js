@@ -20,6 +20,8 @@ const Input = (props) => {
             placeholder={placeholder}
             onChange={(e) => handleOnChange(e)}
             height={props.height}
+            step="0.01"
+            marginBottom={props.marginBottom}
         
         />
     )

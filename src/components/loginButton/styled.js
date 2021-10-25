@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
     transition: 0.8s;
     width: 60%;
+    max-width: 300px;
     padding: 5px;
     background-color: #68de5a;
     

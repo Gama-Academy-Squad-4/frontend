@@ -1,5 +1,5 @@
 import * as S from './styled';
-import { Navbar } from '../../components'
+import { Navbar, ConfigForm, SearchForm} from '../../components'
 
 const Config = (props) => {
 
@@ -8,6 +8,14 @@ const Config = (props) => {
             <Navbar                 
                 active = 'cadastro'
             />
+            <S.Section1>
+                <S.Title>Cadastro de Transações</S.Title>  
+                <ConfigForm/>              
+            </S.Section1>
+            <S.Section2>
+                <S.Title>Edição de Transações (Consulta por data)</S.Title>
+                <SearchForm/>
+            </S.Section2>
         </S.Container>
     )
 

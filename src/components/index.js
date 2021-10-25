@@ -8,3 +8,7 @@ export { default as ToggleMenu } from './toggleMenu';
 export { default as Panel1 } from './panel1';
 export { default as Panel2 } from './panel2';
 export { default as LocalLineChart } from './lineChart';
+export { default as Table } from './table';
+export { default as DatePickerInput } from './datePicker';
+export { default as ConfigForm } from './configForm';
+export { default as SearchForm } from './searchForm'

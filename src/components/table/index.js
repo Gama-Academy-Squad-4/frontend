@@ -12,12 +12,6 @@ const Table = (props) => {
     },[props.rows])
 
     
-
-    
-    
-
-    
-
     return(
         <S.Container>            
             <S.TableContainer>
@@ -37,11 +31,11 @@ const Table = (props) => {
                                 
                                 return(
                                     <S.TR key={index}>                                        
-                                        <S.TD>{`${mod.date.getDate()}/${mod.date.getMonth() +1}/${mod.date.getFullYear()}`}</S.TD>
+                                        <S.TD>{`${mod.data.getDate()}/${mod.data.getMonth() +1}/${mod.data.getFullYear()}`}</S.TD>
                                         <S.TD>{mod.quantidade}</S.TD>
                                         <S.TD>{`R$ ${mod.compra}`}</S.TD>
                                         <S.TD>{`R$ ${mod.atual}`}</S.TD>
-                                        <S.TD>{`${mod.compra} %`}</S.TD>
+                                        <S.TD>{`${mod.variancia} %`}</S.TD>
                                     </S.TR>
                                 )
                             })

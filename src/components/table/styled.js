@@ -1,16 +1,18 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-    height: 50vh;
-    width: 90vw;
+    height: 100%;
+    width: 90%;
     overflow-y: auto;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-
-    background-color: #faa292;
+    font-family: Helvetica, Sans-Serif;
+    background-color: #7d38db;
+    padding: 2%;
+    
 
     @media(max-width: 820px) {       
         height: auto;
@@ -21,9 +23,9 @@ export const Container = styled.div`
 export const TableContainer = styled.div `    
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    width: 90%;
+    width: 100%;
+    height: 100%;
 `
 
 export const Table = styled.table `
@@ -39,7 +41,7 @@ export const Table = styled.table `
 
 export const Thead = styled.thead`
     border: solid 1px #fafafa;
-    background-color: #030303;
+    background-color: #68de5a;
     opacity: 0.95;
     color: #fafafa;
     
