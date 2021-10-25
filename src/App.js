@@ -3,15 +3,18 @@ import './App.css';
 import { Reset } from 'styled-reset';
 import Routes from './routes';
 
+import { Provider } from 'react-redux';
+import store from './redux/store';
+import Updates from './services/updates'
+
 function App() {
   return (
     <>
-      <div  
-    className="App">
-
-</div>
-      <Reset/>
-      <Routes/>
+      <Provider store={store}>
+        <Reset/>
+        <Updates/>            
+        <Routes/>
+      </Provider>
     </>
   );
 }

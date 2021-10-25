@@ -1,46 +1,30 @@
 import * as S from './styled';
-import { Navbar, Table } from '../../components'
+import { Navbar, Table } from '../../components';
+import { useSelector } from 'react-redux';
+
 
 
 const Details = (props) => {
 
-    var rows = [
-        {
-            data: new Date(),
-            quantidade: 0.255,
-            compra: 125.00,
-            atual: 25786.00,
-            variancia: 53
-        },
-        {
-            data: new Date(),
-            quantidade: 0.255,
-            compra: 125.00,
-            atual: 25786.00,
-            variancia: 53
-        },
-        {
-            data: new Date(),
-            quantidade: 0.255,
-            compra: 125.00,
-            atual: 25786.00,
-            variancia: 53
-        },
-        {
-            data: new Date(),
-            quantidade: 0.255,
-            compra: 125.00,
-            atual: 25786.00,
-            variancia: 53
-        },
-        {
-            data: new Date(),
-            quantidade: 0.255,
-            compra: 125.00,
-            atual: 25786.00,
-            variancia: 53
-        },
-    ]
+    
+
+    const {
+        transactions
+    } = useSelector((state) => state.allInfo)
+
+    var rows = [] 
+
+    transactions.map ((item) => {        
+        let auxItem = {
+            data: item.date,
+            quantidade: item.quantidade,
+            compra: item.compra,
+            atual: item.atual,
+            variancia: item.variancia
+        }
+        rows.push(auxItem)
+        return item
+    })
 
     return(
         <S.Container>

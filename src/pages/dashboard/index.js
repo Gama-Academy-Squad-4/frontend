@@ -1,79 +1,86 @@
 import * as S from './styled';
+import { useSelector } from 'react-redux';
 import { LocalLineChart, Navbar, Panel1, Panel2 } from '../../components'
 
 
 const Dashboard = (props) => {
 
+    const {
+        btc24h,
+        consolidado,
+        saldoSemana,
+        saldoMes,
+        dataChart
+    } = useSelector((state) => state.allInfo)
+   
+
     const panel1A = [
         {
             label: 'Atual:',
-            value: '150.255,21'
+            value: btc24h.atual
         },
         {
             label: 'Máximo:',
-            value: '150.255,21'
+            value: btc24h.maximo
         },
         {
             label: 'Mínimo:',
-            value: '90.255,21'
+            value: btc24h.minimo
         }
     ]
 
     const panel1B = [
         {
             label: 'Investido:',
-            value: '150.255,21'
+            value: consolidado.investido
         },
         {
             label: 'Atual:',
-            value: '150.255,21'
+            value: consolidado.atual
         },
         {
             label: 'Lucro:',
-            value: '90.255,21'
+            value: consolidado.lucro
         }
     ]
 
     const panel2A = [
         {
             label: 'Saldo:',
-            value: 'R$ 150.255,21'
+            value: saldoSemana.saldo
         },
         {
             label: 'Percentual:',
-            value: '-2.5 %'
+            value: `${saldoSemana.percent} %`
         }
     ]
 
     const panel2B = [
         {
             label: 'Saldo:',
-            value: 'R$ 150.255,21'
+            value: saldoMes.saldo
         },
         {
             label: 'Percentual:',
-            value: '-2.5 %'
+            value: `${saldoMes.percent} %`
         }
     ]
 
-    var date = new Date()
-    var date2 = new Date(date.setDate(date.getDate() + 1));
-    var date3 = new Date(date.setDate(date.getDate() + 2));
 
-    const dataChart = [
-        {
-            data: date,
-            'Total Consolidado (R$)': 100.00            
-        },
-        {
-            data: date2,
-            'Total Consolidado (R$)': 200.00
-        },
-        {
-            data: date3,
-            'Total Consolidado (R$)': 300.00
+    var localDataChart = []
+   
+
+    dataChart.map ((item) => {
+        let auxData = `${item.date.getDate()}/${item.date.getMonth() +1}/${item.date.getFullYear()}`
+        let auxChart = {
+            data: auxData,
+            'Total Consolidado (R$)': item.value           
         }
-    ]
+        localDataChart.push(auxChart)
+        return item
+    })
+
+    
 
 
 
@@ -108,7 +115,7 @@ const Dashboard = (props) => {
             <S.Section2>
                 <S.Title>Posição Consolidada na Semana</S.Title>
                 <LocalLineChart
-                    data={dataChart}
+                    data={localDataChart}
                 />
             </S.Section2>
         </S.Container>
