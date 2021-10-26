@@ -12,4 +12,4 @@ export { default as Table } from './table';
 export { default as DatePickerInput } from './datePicker';
 export { default as ConfigForm } from './configForm';
 export { default as SearchForm } from './searchForm';
-export { default as SearchTable } from './searchTable'
+export { default as SearchTable } from './searchTable';

@@ -1,20 +1,16 @@
 import api from '../api';
 
-const ListTransactions = () => {
-    let url= `/transactions`
-    
-    return(
-        api
-        .get(url)
-        .then((response) => {  
-            return response.data          
-        })
-        .catch((err) => {
-            console.log("erro getAlarmms: " + err);   
-            return err         
-        })
-    )
-    
-}
+const ListTransactions = async () => {
 
-export default ListTransactions
+    let url = `/transactions`;
+
+    try {
+        const response =  await api.get(url)
+        return response.data
+    }
+    catch (err) {
+        return []
+    }
+};
+
+export default ListTransactions;
