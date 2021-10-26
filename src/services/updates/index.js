@@ -1,40 +1,90 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {
   setBtc24h,
   setConsolidado,
   setDataChart,
   setTransactions,
+  setSaldoSemana,
+  setSaldoMes
+  
 } from '../../redux/modules/allInfo';
-import { ListTransactions } from '../API';
+import { ListTransactions, GetDashboard } from '../API';
+
+
 
 const Updates = () => {
-  const { btc24h } = useSelector(
-    (state) => state.allInfo,
-  );
 
   const dispatch = useDispatch();
 
+  
   useEffect(() => {
     const interval = setInterval(() => {
       try {
+
+        let atualBTC = 0;
+
+        GetDashboard()
+          .then((res) => {      
+            atualBTC =  parseInt(res.statistics.btcNow.valueNow).toFixed(2);         
+            let btc24h1 = {
+              atual: parseInt(res.statistics.btcNow.valueNow).toFixed(2),
+              maximo: parseInt(res.statistics.btcNow.hight).toFixed(2),
+              minimo: parseInt(res.statistics.btcNow.low).toFixed(2),
+            };            
+            dispatch(setBtc24h(btc24h1));
+
+            let consolidado = {
+              investido: parseInt(res.statistics.consolidate.totalInvested).toFixed(2),
+              atual: parseInt(res.statistics.consolidate.totalBalance).toFixed(2),
+              lucro: parseInt(res.statistics.consolidate.totalProfit).toFixed(2),
+            };
+            dispatch(setConsolidado(consolidado));
+
+            let saldoSemana = {
+              saldo: parseInt(res.statistics.totalWeek.totalBalance).toFixed(2),
+              percent: parseInt(res.statistics.totalWeek.totalAvarage).toFixed(2),
+            }
+            dispatch(setSaldoSemana(saldoSemana))
+
+            let saldoMes = {
+              saldo: parseInt(res.statistics.totalMounth.totalBalance).toFixed(2),
+              percent: parseInt(res.statistics.totalMounth.totalAvarage).toFixed(2),
+            }
+            dispatch(setSaldoMes(saldoMes))
+
+            let dataChartList = []
+            let auxDataChartList = res.statistics.consolidateWeek
+            auxDataChartList.map((item) => {
+              let dataChart = {
+                date : new Date(item.transactionAt),
+                value : item.totalValue,
+              }
+              dataChartList.push(dataChart)
+              return item
+            })            
+            dispatch(setDataChart(dataChartList));
+
+
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+
+
         ListTransactions()
-          .then((res) => {
-            console.log(res.transactions.transactions);
+          .then((res) => {            
             let listTransactions = res.transactions.transactions;
             let auxTransactions = [];
             if (listTransactions.length !== 0) {
-              listTransactions.map((item) => {
-                console.log(item);
+              listTransactions.map((item) => {                
                 let auxTransaction = {
                   date: new Date(item.transactionAt),
                   quantidade: item.amount,
                   compra: parseInt(item.value).toFixed(2),
-                  atual: parseInt(btc24h.atual).toFixed(2),
+                  atual: parseInt(atualBTC).toFixed(2),
                   variancia: parseInt(item.variationValue).toFixed(2),
-                };
-                console.log(item.transactionAt);
-                console.log(new Date(item.transactionAt));
+                };                
                 auxTransactions.push(auxTransaction);
                 return item;
               });
@@ -47,41 +97,13 @@ const Updates = () => {
             console.log(err);
           });
 
-        let btc24h1 = {
-          atual: Math.floor(Math.random() * 1000),
-          maximo: Math.floor(Math.random() * 1000),
-          minimo: Math.floor(Math.random() * 1000),
-        };
-        dispatch(setBtc24h(btc24h1));
 
-        let consolidado = {
-          investido: Math.floor(Math.random() * 1000),
-          atual: Math.floor(Math.random() * 1000),
-          lucro: Math.floor(Math.random() * 1000),
-        };
-        dispatch(setConsolidado(consolidado));
-
-        let date = new Date();
-
-        let dataChart = [
-          {
-            date: new Date(date.setDate(date.getDate() + Math.floor(Math.random() * 10))),
-            value: Math.floor(Math.random() * 1000),
-          },
-          {
-            date: new Date(date.setDate(date.getDate() + Math.floor(Math.random() * 10))),
-            value: Math.floor(Math.random() * 1000),
-          },
-          {
-            date: new Date(date.setDate(date.getDate() + Math.floor(Math.random() * 10))),
-            value: Math.floor(Math.random() * 1000),
-          },
-        ];
-        dispatch(setDataChart(dataChart));
+       
+        
       } catch {
           console.log("datachart Error")
       }
-    }, 30000);
+    }, 15000);
     return () => clearInterval(interval);
   }, []);
 
