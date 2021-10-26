@@ -66,6 +66,8 @@ const reducer = (state = initialState, action) => {
             return{ ...state, saldoMes: action.payload}
         case Types.SET_DATA_CHART:
             return{ ...state, dataChart: action.payload}
+        case Types.SET_TRANSACTIONS:
+            return{ ...state, transactions: action.payload}
         case Types.SET_SEARCHED:
             return{ ...state, searched: action.payload}
 
@@ -110,6 +112,13 @@ export const setDataChart = (dataChart) => {
     return{
         type: Types.SET_DATA_CHART,
         payload: dataChart
+    }
+}
+
+export const setTransactions = (transactions) => {
+    return{
+        type: Types.SET_TRANSACTIONS,
+        payload: transactions
     }
 }
 
