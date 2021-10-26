@@ -7,7 +7,7 @@ import Config from "./pages/config";
 
 export default function Routes(props) {
     return(
-        <BrowserRouter>
+        <BrowserRouter basename={process.env.PUBLIC_URL}>
             <Switch> 
                 <Route path= '/dashboard'>
                     <Dashboard props={props}/>
